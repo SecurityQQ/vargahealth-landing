@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 93%; /* #EEEEEE */
+    --foreground: 243 38% 19%; /* #201E43 */
+    --card: 0 0% 93%; /* #EEEEEE */
+    --card-foreground: 243 38% 19%; /* #201E43 */
+    --popover: 0 0% 93%; /* #EEEEEE */
+    --popover-foreground: 243 38% 19%; /* #201E43 */
+    --primary: 243 38% 19%; /* #201E43 */
+    --primary-foreground: 0 0% 93%; /* #EEEEEE */
+    --secondary: 204 69% 26%; /* #134B70 */
+    --secondary-foreground: 0 0% 93%; /* #EEEEEE */
+    --muted: 190 30% 46%; /* #508C9B */
+    --muted-foreground: 243 38% 19%; /* #201E43 */
+    --accent: 190 30% 46%; /* #508C9B */
+    --accent-foreground: 243 38% 19%; /* #201E43 */
+    --destructive: 0 84.2% 60.2%; /* #C0392B */
+    --destructive-foreground: 0 0% 93%; /* #EEEEEE */
+    --border: 204 69% 26%; /* #134B70 */
+    --input: 0 0% 93%; /* #EEEEEE */
+    --ring: 243 38% 19%; /* #201E43 */
+    --radius: 0.5rem;
+    --chart-1: 243 38% 19%; /* #201E43 */
+    --chart-2: 204 69% 26%; /* #134B70 */
+    --chart-3: 190 30% 46%; /* #508C9B */
+    --chart-4: 0 0% 93%; /* #EEEEEE */
+    --chart-5: 243 38% 19%; /* #201E43 */
+  }
+
+  .dark {
+    --background: 243 38% 19%; /* #201E43 */
+    --foreground: 0 0% 93%; /* #EEEEEE */
+    --card: 243 38% 19%; /* #201E43 */
+    --card-foreground: 0 0% 93%; /* #EEEEEE */
+    --popover: 243 38% 19%; /* #201E43 */
+    --popover-foreground: 0 0% 93%; /* #EEEEEE */
+    --primary: 0 0% 93%; /* #EEEEEE */
+    --primary-foreground: 243 38% 19%; /* #201E43 */
+    --secondary: 204 69% 26%; /* #134B70 */
+    --secondary-foreground: 0 0% 93%; /* #EEEEEE */
+    --muted: 190 30% 46%; /* #508C9B */
+    --muted-foreground: 0 0% 93%; /* #EEEEEE */
+    --accent: 190 30% 46%; /* #508C9B */
+    --accent-foreground: 0 0% 93%; /* #EEEEEE */
+    --destructive: 0 62.8% 30.6%; /* #A83232 */
+    --destructive-foreground: 0 0% 93%; /* #EEEEEE */
+    --border: 204 69% 26%; /* #134B70 */
+    --input: 243 38% 19%; /* #201E43 */
+    --ring: 190 30% 46%; /* #508C9B */
+    --chart-1: 243 38% 19%; /* #201E43 */
+    --chart-2: 204 69% 26%; /* #134B70 */
+    --chart-3: 190 30% 46%; /* #508C9B */
+    --chart-4: 0 0% 93%; /* #EEEEEE */
+    --chart-5: 243 38% 19%; /* #201E43 */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+html {
+  font-family: 'Lato', sans-serif;
+}

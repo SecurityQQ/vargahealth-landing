@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { ShieldCheck, ShieldBan as ShieldLock, FileText } from 'lucide-react';
+import Link from 'next/link';
 
 
 
@@ -116,8 +117,11 @@ const Home = () => {
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
         >
           <form className="flex flex-row space-x-3">
-            <Input type="email" placeholder="Your Professional Email" className="p-3 border rounded-md" />
-            <Button type="submit" className="p-3 bg-primary text-background rounded-md hover:bg-primary-dark">Get Started</Button>
+          {/*<Button type="submit" className="p-3 bg-primary text-background rounded-md hover:bg-primary-dark">Get Started</Button>*/}
+          <Input type="email" placeholder="Your Professional Email" className="p-3 border rounded-md" />
+          <Button className="p-3 bg-primary text-background rounded-md hover:bg-primary-dark"> <Link href="https://calendly.com/alexmsecurity/call?back=1"> Contact Sales</Link> </Button>
+            
+            {/*<Button type="submit" className="p-3 bg-primary text-background rounded-md hover:bg-primary-dark">Get Started</Button>*/}
           </form>
         </motion.div>
         <Sponsors />

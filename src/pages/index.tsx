@@ -8,7 +8,7 @@ import { ShieldCheck, ShieldBan as ShieldLock, FileText } from 'lucide-react';
 
 
 
-const words = ["evidence-based", "integrative", "personalized", "precision-driven", "cutting-edge", "genomics", "telehealth", "biomarker-informed"];
+const words = ["evidence-based", "integrative", "personalized", "cutting-edge", "genomics", "telehealth", "holistic", "respectful"];
 
 interface SponsorProps {
   imgSrc: string;
@@ -103,32 +103,31 @@ const Home = () => {
           </motion.span>{" "}
           doctor
         </motion.h2>
-        <p className="text-xl mb-6 text-foreground">
-          by scaling your medical expertise with artificial intelligence
+        <p className="text-lg md:text-xl mb-2 md:mb-8 text-foreground">
+          Automate Your Medical Expertise With Artificial Intelligence
         </p>
-        <p className="mb-6 text-md text-foreground max-w-xl mx-auto">
+        <p className="mb-4 mx-2 md:mx-0 text-md text-primary/60 max-w-xl mx-auto">
           Booking, Assessment, Medical System designed for Private Doctors helping them serve more patients and get more scientific reputation in the community
         </p>
         <motion.div
-          className="bg-background p-4 rounded-lg shadow-md mb-8 max-w-sm w-full"
+          className="bg-background p-4 rounded-lg shadow-md mb-2 max-w-sm w-full"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
         >
-          <h3 className="text-2xl font-bold mb-2">Join our Waiting List</h3>
-          <form className="flex flex-col space-y-3">
-            <Input type="email" placeholder="Your Email" className="p-3 border rounded-md" />
-            <Button type="submit" className="p-3 bg-primary text-background rounded-md hover:bg-primary-dark">Submit</Button>
+          <form className="flex flex-row space-x-3">
+            <Input type="email" placeholder="Your Professional Email" className="p-3 border rounded-md" />
+            <Button type="submit" className="p-3 bg-primary text-background rounded-md hover:bg-primary-dark">Get Started</Button>
           </form>
         </motion.div>
         <Sponsors />
       </main>
 
-      <footer className="w-full bg-primary text-background py-4 fixed bottom-0 z-10">
+      <footer className="w-full bg-primary text-background py-2 fixed bottom-0 z-10">
     <div className="container mx-auto text-center">
-      
+      <p className="text-sm font-medium md:hidden">&copy; 2024 Varga Health AI</p>
       <div className="mt-2 flex justify-center items-center space-x-4">
-      <p className="text-sm font-medium">&copy; 2024 Varga Health AI</p>
+      <p className="text-sm font-medium hidden md:block">&copy; 2024 Varga Health AI</p>
         <div className="flex items-center space-x-2 text-xs">
           <ShieldCheck className="text-green-500" />
           <span>GDPR Compliant</span>

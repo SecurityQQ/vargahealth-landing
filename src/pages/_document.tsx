@@ -1,5 +1,7 @@
 // pages/_document.tsx
 import { Html, Head, Main, NextScript } from "next/document";
+import { Analytics } from "@/components/analytics";
+
 
 export default function Document() {
   return (
@@ -8,6 +10,8 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
+        
+        <Analytics />
       </body>
     </Html>
   );

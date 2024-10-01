@@ -1,155 +1,336 @@
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { motion } from 'framer-motion';
+// pages/index.tsx
+
 import { useState, useEffect } from 'react';
-import Head from 'next/head';
-import Image from 'next/image';
-import { ShieldCheck, ShieldBan as ShieldLock, FileText } from 'lucide-react';
-import Link from 'next/link';
+import Head from 'next/head'
+import Image from 'next/image'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import {
+  CheckCircle,
+  Brain,
+  Shield,
+  Zap,
+  BarChart,
+  ListChecks,
+  AlertTriangle,
+} from 'lucide-react'
+
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import FeatureCard from '@/components/FeatureCard'
+import FounderCard from '@/components/FounderCard'
+import { Resend } from 'resend';
 
 
 
-const words = ["evidence-based", "integrative", "personalized", "cutting-edge", "genomics", "telehealth", "holistic", "respectful"];
+export default function BrogevityLanding() {
+  const [email, setEmail] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [totalContacts, setTotalContacts] = useState(0); // State to store total waitlist contacts
+  const [isWaitlistFull, setIsWaitlistFull] = useState(false); // State to check if waitlist is full
 
-interface SponsorProps {
-  imgSrc: string;
-  name: string;
-}
-
-const sponsors: SponsorProps[] = [
-  {
-    imgSrc: "/images/lbf.jpg",
-    name: "Longevity Biotech Fellowship",
-  },
-  {
-    imgSrc: "/images/numenor.jpeg",
-    name: "Numenor Health",
-  },
-  {
-    imgSrc: "/images/yc.png",
-    name: "YCombinator Startup School",
-  },
-];
-
-const Sponsors = () => {
-  return (
-    <section id="sponsors" className="container pt-4 pb-12">
-      <h2 className="text-center text-xl lg:text-2xl font-bold mb-4 text-primary">
-        Seen at
-      </h2>
-      <div className="flex flex-wrap justify-center items-center gap-4">
-        {sponsors.map(({ imgSrc, name }: SponsorProps) => (
-          <div key={name} className="flex flex-col items-center space-y-1 w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
-            <div className="relative w-10 h-10 md:w-16 md:h-16">
-              <Image src={imgSrc} alt={name} layout="fill" objectFit="contain" className="rounded-lg shadow-lg" />
-            </div>
-            <h3 className="text-md font-bold text-center">{name}</h3>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-};
-
-const Home = () => {
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
-    }, 1700); // Change every x second
+    const fetchWaitlistCount = async () => {
+      try {
+        const response = await fetch('/api/waitlist', { method: 'GET' });
+        const data = await response.json();
+        setTotalContacts(data.totalContacts);
+        setIsWaitlistFull(data.totalContacts >= 100); // Check if waitlist is full
+      } catch (error) {
+        console.error('Failed to fetch total contacts:', error);
+      }
+    };
 
-    return () => clearInterval(interval);
+    fetchWaitlistCount();
   }, []);
 
-  return (
-    <div className="relative min-h-screen flex flex-col bg-muted overflow-hidden">
-      <Head>
-        <title>Varga AI</title>
-      </Head>
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-      <video
-        autoPlay
-        loop
-        muted
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
-      >
-        <source src="/video.webm" type="video/webm" />
-        Your browser does not support the video tag.
-      </video>
+  try {
+    const response = await fetch('/api/waitlist', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        firstName,
+      }),
+    });
 
-      <div className="absolute top-0 left-0 w-full h-full bg-background opacity-80 z-0"></div>
+    const data = await response.json();
 
-      <header className="w-full bg-primary text-background py-2 fixed top-0 z-10 shadow-lg">
-        <h1 className="text-center text-2xl font-extrabold tracking-tight">Varga Health AI</h1>
-      </header>
-
-      <main className="flex-1 flex flex-col items-center justify-center px-4 text-center relative z-10 mt-16 mb-12">
-        <motion.h2
-          className="text-5xl font-extrabold mb-4 text-foreground"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-        >
-          Become a{" "}
-          <motion.span
-            className="inline-block"
-            key={currentWordIndex}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -50 }}
-            transition={{ duration: 0.5 }}
-          >
-            {words[currentWordIndex]}
-          </motion.span>{" "}
-          doctor
-        </motion.h2>
-        <p className="text-lg md:text-xl mb-2 md:mb-8 text-foreground">
-          Automate Your Medical Expertise With Artificial Intelligence
-        </p>
-        <p className="mb-4 mx-2 md:mx-0 text-md text-primary/60 max-w-xl mx-auto">
-          Booking, Assessment, Medical System designed for Private Doctors helping them serve more patients and get more scientific reputation in the community
-        </p>
-        <motion.div
-          className="bg-background p-4 rounded-lg shadow-md mb-2 max-w-sm w-full"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: "spring", stiffness: 260, damping: 20 }}
-        >
-          <form className="flex flex-row space-x-3">
-          {/*<Button type="submit" className="p-3 bg-primary text-background rounded-md hover:bg-primary-dark">Get Started</Button>*/}
-          <Input type="email" placeholder="Your Professional Email" className="p-3 border rounded-md" />
-          <Button className="p-3 bg-primary text-background rounded-md hover:bg-primary-dark"> <Link href="https://calendly.com/alexmsecurity/call?back=1"> Contact Sales</Link> </Button>
-            
-            {/*<Button type="submit" className="p-3 bg-primary text-background rounded-md hover:bg-primary-dark">Get Started</Button>*/}
-          </form>
-        </motion.div>
-        <Sponsors />
-      </main>
-
-      <footer className="w-full bg-primary text-background py-2 fixed bottom-0 z-10">
-    <div className="container mx-auto text-center">
-      <p className="text-sm font-medium md:hidden">&copy; 2024 Varga Health AI</p>
-      <div className="mt-2 flex justify-center items-center space-x-4">
-      <p className="text-sm font-medium hidden md:block">&copy; 2024 Varga Health AI</p>
-        <div className="flex items-center space-x-2 text-xs">
-          <ShieldCheck className="text-green-500" />
-          <span>GDPR Compliant</span>
-        </div>
-        <div className="flex items-center space-x-2 text-xs">
-          <ShieldLock className="text-blue-500" />
-          <span>HIPAA Compliant</span>
-        </div>
-        <div className="flex items-center space-x-2 text-xs">
-          <FileText className="text-yellow-500" />
-          <span>ISO 27001</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-    </div>
-  );
+    if (response.ok) {
+      setIsSubmitted(true);
+    } else {
+      console.error('Failed to join waitlist:', data.error);
+    }
+  } catch (error) {
+    console.error('Error submitting form:', error);
+  }
 };
 
-export default Home;
+
+  return (
+    <div className="min-h-screen flex flex-col bg-background text-foreground">
+      <Head>
+        <title>Brogevity AI - Unlock Personalized Longevity Insights</title>
+        <meta
+          name="description"
+          content="Brogevity AI uses cutting-edge AI to provide personalized, actionable longevity strategies. Join our waitlist today!"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* Add Open Graph and Twitter meta tags */}
+      </Head>
+
+      <Header />
+
+      <main className="flex-grow">
+        {/* Urgency Message */}
+        <div className="bg-accent text-accent-foreground py-2 text-center">
+          <p>
+            <AlertTriangle className="inline-block mr-2" />
+            {isWaitlistFull
+              ? 'Uh oh... The first 100 spots are taken, but you can still apply and be put on a waitlist.'
+              : `Hurry! Only 100 spots available! ${totalContacts}/100 spots are taken. Apply immediately!`}
+          </p>
+        </div>
+
+        {/* Hero Section */}
+        <section
+          className="relative bg-cover bg-center"
+          style={{ backgroundImage: 'url(/images/hero-background.jpg)' }}
+        >
+          <div className="bg-background bg-opacity-60">
+            <div className="container mx-auto px-4 py-20 text-center">
+              <h1 className="text-5xl font-bold mb-4">
+                Transform Podcasts Into Actions
+                <br />
+                <span className="text-primary">In Minutes, Not Years.</span>
+              </h1>
+              <p className="text-xl mb-8">
+                Dynamic AI Interface that cuts through the noise for <strong>trustworthy & personalized longevity actions</strong>
+              </p>
+              <Button
+                size="lg"
+                className="bg-primary hover:bg-primary-dark text-primary-foreground"
+                onClick={() =>
+                  document
+                    .getElementById('waitlist')
+                    ?.scrollIntoView({ behavior: 'smooth' })
+                }
+              >
+                Join the Waitlist Now
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Pain Points Section */}
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              Just Listening To Longevity Podcasts is Overwhelming Because...
+            </h2>
+            <ul className="list-disc space-y-4 text-lg max-w-2xl mx-auto">
+              <li>
+                <strong>{`Generic Advice Overload:`}</strong> {`Endless generic tips
+                that don't address your unique needs`}
+              </li>
+              <li>
+                <strong>{`Conflicting Information:`}</strong> {`Contradictory
+                recommendations leave you confused and stuck`}
+              </li>
+              <li>
+                <strong>{`Mistrust in Sources:`}</strong> {`Paid promotions make it
+                hard to know what's genuinely beneficial`}
+              </li>
+              <li>
+                <strong>{`High Costs Barrier:`}</strong> {`Longevity solutions often
+                seem unaffordable and out of reach`}
+              </li>
+              <li>
+                <strong>{`Lack of Tracking Tools:`}</strong> {`Without reliable
+                metrics, it's hard to monitor progress and stay motivated`}
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        {/* Solution Introduction */}
+        <section className="py-16 bg-muted">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-4">
+              {`And That's Why We're Bringing a Solution for You!`}
+            </h2>
+            <p className="text-xl max-w-3xl mx-auto">
+              {`No more sifting through countless articles and podcasts`}
+              <br />
+              {`No more confusion from conflicting advice`}
+              <br />
+              {`No more expensive consultations or inaccessible solutions`}
+            </p>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="py-16 bg-background" id='how-it-works'>
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-12">
+              {"We're Building the Super Intelligence for Personalized Longevity!"}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <FeatureCard
+                icon={<Brain className="h-8 w-8 text-primary" />}
+                title="AI-Powered Intelligence"
+                description="Delivers customized guidance tailored specifically to your needs, cutting through generic advice"
+              />
+              <FeatureCard
+                icon={<Shield className="h-8 w-8 text-primary" />}
+                title="Information Verification"
+                description="Cross-references data from multiple trusted sources to eliminate conflicting advice and build your trust"
+              />
+              <FeatureCard
+                icon={<Zap className="h-8 w-8 text-primary" />}
+                title="Accessible Solutions"
+                description="Recommends affordable alternatives, making longevity strategies accessible to everyone"
+              />
+              <FeatureCard
+                icon={<BarChart className="h-8 w-8 text-primary" />}
+                title="Integrated Tracking"
+                description="Offers reliable metrics and tools so you can easily monitor your progress and stay motivated"
+              />
+              <FeatureCard
+                icon={<ListChecks className="h-8 w-8 text-primary" />}
+                title="Actionable Insights"
+                description="Transforms complex health data into practical, personalized action plans you can implement immediately"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Founder Trust Section */}
+        <section className="py-16 bg-background" id='founders'>
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-4">
+              {"Why You Should Trust Brogevity AI"}
+            </h2>
+            <p className="text-xl text-center max-w-3xl mx-auto mb-8">
+              {`We're not just another platform; we're a team committed to
+              transforming the way you approach longevity`}
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <FounderCard
+                imageSrc="/alex.jpg"
+                name="Alex: Founder, CEO & CTO"
+                bio={[
+                  'TechStars, Google, Facebook, and 15+ Math & Hackathon awards winner',
+                  'Fellow at Longevity Biotech Fellowship and Resident at Vitalia, Honduras',
+                  'Increased Yandex revenue by $12M with AI-driven ad systems',
+                  'Bootstrapped a $500,000 ARR Healthy Meal Plan Business',
+                ]}
+                twitter={"https://x.com/vargastartup"}
+              />
+              <FounderCard
+                imageSrc="/anna.png"
+                name="Anna: Co-Founder, CPO & CMO"
+                bio={[
+                  'Former CPO at Berkeley SkyDeck startup',
+                  'Previously founded a language learning app',
+                  'Product Manager at Lensa, an app with over 2M Daily Active Users',
+                ]}
+                twitter={"https://x.com/burninganna"}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Closing CTA */}
+        <section className="py-16 bg-muted" id='waitlist'>
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-4">
+              {`The Platform Will Soon Be Available... Be One of Our First Users!`}
+            </h2>
+            <Button
+              size="lg"
+              className="bg-primary hover:bg-primary-dark text-primary-foreground"
+              onClick={() =>
+                document
+                  .getElementById('waitlist')
+                  ?.scrollIntoView({ behavior: 'smooth' })
+              }
+            >
+              Join the Waitlist Now
+            </Button>
+            <p className="mt-4 text-sm">
+              {`We won't spam you, and the only emails you'll receive will be
+              directly related to the platform.`}
+            </p>
+          </div>
+        </section>
+
+        {/* Waitlist Section */}
+        <section id="waitlist" className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-md mx-auto">
+              <div className="bg-card shadow-md rounded px-8 py-8">
+                {!isSubmitted ? (
+                  <form onSubmit={handleSubmit}>
+                    <div className="flex flex-col">
+                      <div className="mb-2">
+                        <h3>Join the Waitlist Now</h3>
+                        <p className="text-sm text-muted-foreground">
+                        {isWaitlistFull
+                          ? `Uh oh... The first 100 spots are taken, but you can still apply and be put on a waitlist.`
+                          : `Hurry! Only 100 spots available! ${totalContacts}/100 spots are taken. Apply immediately!`}
+                        </p>
+                      </div>
+                      {!isWaitlistFull && (
+                        <>
+                          <Input
+                            type="text"
+                            placeholder="Enter your first name"
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            required
+                            className="mb-4"
+                          />
+                          <Input
+                            type="email"
+                            placeholder="Enter your email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            className="mb-4"
+                          />
+                          <Button
+                            type="submit"
+                            className="w-full bg-primary hover:bg-primary-dark text-primary-foreground"
+                          >
+                            Join Waitlist
+                          </Button>
+                        </>
+                      )}
+                    </div>
+                  </form>
+                ) : (
+                  <div className="text-center text-success">
+                    <CheckCircle className="mx-auto mb-4" size={48} />
+                    <p className="text-xl">Thank you for joining our waitlist!</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <Footer />
+    </div>
+  )
+}

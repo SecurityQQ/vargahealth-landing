@@ -1,75 +1,334 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
-
 @tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 93%; /* #EEEEEE */
-    --foreground: 243 38% 19%; /* #201E43 */
-    --card: 0 0% 93%; /* #EEEEEE */
-    --card-foreground: 243 38% 19%; /* #201E43 */
-    --popover: 0 0% 93%; /* #EEEEEE */
-    --popover-foreground: 243 38% 19%; /* #201E43 */
-    --primary: 243 38% 19%; /* #201E43 */
-    --primary-foreground: 0 0% 93%; /* #EEEEEE */
-    --secondary: 204 69% 26%; /* #134B70 */
-    --secondary-foreground: 0 0% 93%; /* #EEEEEE */
-    --muted: 190 30% 46%; /* #508C9B */
-    --muted-foreground: 243 38% 19%; /* #201E43 */
-    --accent: 190 30% 46%; /* #508C9B */
-    --accent-foreground: 243 38% 19%; /* #201E43 */
-    --destructive: 0 84.2% 60.2%; /* #C0392B */
-    --destructive-foreground: 0 0% 93%; /* #EEEEEE */
-    --border: 204 69% 26%; /* #134B70 */
-    --input: 0 0% 93%; /* #EEEEEE */
-    --ring: 243 38% 19%; /* #201E43 */
+    /* Define colors using HSL format for consistency */
+    --background: 0 0% 98%;         /* Light background, similar to white */
+    --foreground: 0 0% 20%;         /* Dark text color */
+    --muted: 229 20% 88%;           /* Muted, soft grey */
+    --muted-foreground: 229 10% 50%; /* Soft grey text for muted areas */
+    --popover: 0 0% 98%;            /* Light background for popups */
+    --popover-foreground: 0 0% 20%; /* Dark foreground for popup text */
+    --card: 0 0% 100%;              /* White card background */
+    --card-foreground: 0 0% 20%;    /* Dark text on cards */
+    --border: 229 14% 85%;          /* Light border color */
+    --input: 229 14% 95%;           /* Light input background */
+    --primary: 210 100% 70%;        /* Bright blue for primary buttons */
+    --primary-foreground: 0 0% 100%;/* White text for buttons */
+    --secondary: 229 14% 85%;       /* Muted secondary background */
+    --secondary-foreground: 229 10% 50%; /* Muted text for secondary elements */
+    --accent: 200 100% 60%;          /* Medium blue for accents */
+    --accent-foreground: 0 0% 100%; /* White text for accent items */
+    --destructive: 3 89% 54%;       /* Red for destructive actions */
+    --destructive-foreground: 0 0% 100%; /* White text on destructive buttons */
+    --ring: 200 100% 60%;           /* Bright blue ring color */
     --radius: 0.5rem;
-    --chart-1: 243 38% 19%; /* #201E43 */
-    --chart-2: 204 69% 26%; /* #134B70 */
-    --chart-3: 190 30% 46%; /* #508C9B */
-    --chart-4: 0 0% 93%; /* #EEEEEE */
-    --chart-5: 243 38% 19%; /* #201E43 */
+    
+    --chart-1: 210 100% 70%;
+    --chart-2: 229 14% 85%;
+    --chart-3: 240 4% 44%; 
+    --chart-4: 200 100% 60%;
+    --chart-5: 37 10% 36%; 
+    --chart-6: 210 71% 72%; 
+
+
   }
 
-  .dark {
-    --background: 243 38% 19%; /* #201E43 */
-    --foreground: 0 0% 93%; /* #EEEEEE */
-    --card: 243 38% 19%; /* #201E43 */
-    --card-foreground: 0 0% 93%; /* #EEEEEE */
-    --popover: 243 38% 19%; /* #201E43 */
-    --popover-foreground: 0 0% 93%; /* #EEEEEE */
-    --primary: 0 0% 93%; /* #EEEEEE */
-    --primary-foreground: 243 38% 19%; /* #201E43 */
-    --secondary: 204 69% 26%; /* #134B70 */
-    --secondary-foreground: 0 0% 93%; /* #EEEEEE */
-    --muted: 190 30% 46%; /* #508C9B */
-    --muted-foreground: 0 0% 93%; /* #EEEEEE */
-    --accent: 190 30% 46%; /* #508C9B */
-    --accent-foreground: 0 0% 93%; /* #EEEEEE */
-    --destructive: 0 62.8% 30.6%; /* #A83232 */
-    --destructive-foreground: 0 0% 93%; /* #EEEEEE */
-    --border: 204 69% 26%; /* #134B70 */
-    --input: 243 38% 19%; /* #201E43 */
-    --ring: 190 30% 46%; /* #508C9B */
-    --chart-1: 243 38% 19%; /* #201E43 */
-    --chart-2: 204 69% 26%; /* #134B70 */
-    --chart-3: 190 30% 46%; /* #508C9B */
-    --chart-4: 0 0% 93%; /* #EEEEEE */
-    --chart-5: 243 38% 19%; /* #201E43 */
+  /* Light Mode Variables */
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    /* Add other light mode variable definitions if needed */
   }
-}
 
-@layer base {
+
+
+  /* Apply global styles */
+  body {
+    color: hsl(var(--foreground));
+    background: hsl(var(--background));
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  /* Apply border utility */
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
+
+  /* Dark mode overrides using the .dark class */
+  .dark {
+      --background: 229 41% 4%;        /* Very dark background */
+      --foreground: 229 23% 99%;       /* Light text color */
+      --muted: 229 12% 14%;            /* Muted, dark grey */
+      --muted-foreground: 229 10% 63%; /* Grey text for muted areas */
+      --popover: 229 41% 5%;           /* Dark background for popups */
+      --popover-foreground: 0 0% 100%; /* Light text for popup text */
+      --card: 229 41% 5%;              /* Dark card background */
+      --card-foreground: 0 0% 100%;    /* Light text on cards */
+      --border: 215 27.9% 16.9%;       /* Dark border color */
+      --input: 215 27.9% 16.9%;        /* Dark input background */
+      --primary: 229 100% 62%;         /* Bright blue for primary buttons */
+      --primary-foreground: 0 0% 100%; /* White text for buttons */
+      --secondary: 229 14% 8%;         /* Muted secondary background */
+      --secondary-foreground: 229 14% 68%; /* Muted text for secondary elements */
+      --accent: 229 23% 17%;           /* Medium blue for accents */
+      --accent-foreground: 229 23% 77%; /* Light text for accent items */
+      --destructive: 3 89% 54%;        /* Red for destructive actions */
+      --destructive-foreground: 0 0% 100%; /* White text on destructive buttons */
+      --ring: 229 100% 62%;            /* Bright blue ring color */
+      
+      --chart-1: 209 80% 52%;
+      --chart-2: 229 23% 37%;
+      --chart-3: 0 20% 50%;
+      --chart-4: 229 100% 62%;
+      --chart-5: 300 70% 60%; 
+      --chart-6: 30 70% 50%;
   }
 }
 
-html {
-  font-family: 'Lato', sans-serif;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }
+
+@layer components {
+  .bg-gradient-1 {
+    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Sunset Bliss */
+  }
+
+  .bg-gradient-2 {
+    background: linear-gradient(to right, #00c6ff, #0072ff); /* Ocean Depths */
+  }
+
+  .bg-gradient-3 {
+    background: linear-gradient(to right, #e0c3fc, #8ec5fc); /* Lavender Dream */
+  }
+
+  .bg-gradient-4 {
+    background: linear-gradient(to right, #56ab2f, #a8e063); /* Forest Serenity */
+  }
+
+  .bg-gradient-5 {
+    background: linear-gradient(to right, #ff5f6d, #ffc371); /* Fiery Dawn */
+  }
+}
+
+h1 {
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+  }
+
+h2 {
+  @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0;
+}
+
+
+
+h3 {
+  @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+}
+
+/* Global Paragraph Styles */
+p {
+  @apply leading-7;
+}
+
+/* Add margin-top to paragraphs that are not the first child */
+p + p {
+  @apply mt-6;
+}
+
+/* Global Link Styles */
+a {
+  @apply font-medium text-primary underline underline-offset-4;
+}
+
+/* Global Blockquote Styles */
+blockquote {
+  @apply mt-6 border-l-2 pl-6 italic;
+}
+
+/* Global List Styles */
+ul {
+  @apply my-2 ml-1 list-disc;
+}
+
+ul li {
+  @apply mt-2;
+}
+
+/* Global Table Styles */
+table {
+  @apply w-full;
+}
+
+th, td {
+  @apply border px-4 py-2 text-left;
+}
+
+/* Zebra Striping for Table Rows */
+tbody tr:nth-child(even) {
+  @apply bg-muted;
+}
+
+@tailwind components;
+
+@tailwind utilities;
+
+/* Tailwind Typography Styles */
+.prose {
+  --tw-prose-body: hsl(var(--foreground));
+  --tw-prose-headings: hsl(var(--foreground));
+  --tw-prose-lead: hsl(var(--foreground));
+  --tw-prose-links: hsl(var(--primary));
+  --tw-prose-bold: hsl(var(--foreground));
+  --tw-prose-counters: hsl(var(--muted-foreground));
+  --tw-prose-bullets: hsl(var(--muted-foreground));
+  --tw-prose-hr: hsl(var(--border));
+  --tw-prose-quotes: hsl(var(--foreground));
+  --tw-prose-quote-borders: hsl(var(--border));
+  --tw-prose-captions: hsl(var(--muted-foreground));
+  --tw-prose-code: hsl(var(--accent));
+  --tw-prose-pre-code: hsl(var(--foreground));
+  --tw-prose-pre-bg: hsl(var(--background));
+  --tw-prose-th-borders: hsl(var(--border));
+  --tw-prose-td-borders: hsl(var(--border));
+  color: var(--tw-prose-body);
+
+  @apply max-w-none;
+  overflow-x: auto;
+  word-break: break-word;
+  max-width: 90ch;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: var(--tw-prose-headings);
+}
+.prose h2 {
+  @apply mt-10 ;
+}
+
+.prose h3 {
+  @apply mt-8;
+}
+
+.prose p {
+  @apply mt-6 first:mt-0;
+}
+
+.prose a {
+  color: var(--tw-prose-links);
+  text-decoration: underline;
+}
+
+.prose strong {
+  color: var(--tw-prose-bold);
+  font-weight: bold;
+}
+
+.prose ol,
+.prose ul {
+  list-style: disc;
+  padding-left: 1.25em;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose hr {
+  border-color: var(--tw-prose-hr);
+  border-width: 1px 0 0 0;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.prose blockquote {
+  border-left: 0.25em solid var(--tw-prose-quote-borders);
+  color: var(--tw-prose-quotes);
+  margin-left: 0;
+  padding-left: 1em;
+}
+
+.prose figcaption {
+  color: var(--tw-prose-captions);
+  text-align: center;
+  font-size: 0.875em;
+  margin-top: 0.5em;
+}
+
+.prose code {
+  color: var(--tw-prose-code);
+  font-size: 0.875em;
+}
+
+.prose pre {
+  background-color: var(--tw-prose-pre-bg);
+  color: var(--tw-prose-pre-code);
+  overflow-x: auto;
+  padding: 1em 1.5em;
+  border-radius: 0.375em;
+  @apply max-w-full;
+}
+
+.prose pre code {
+  background-color: inherit;
+  color: inherit;
+}
+
+.prose table {
+  width: 100%;
+  table-layout: auto;
+  text-align: left;
+  margin: 0 0 1.5em 0;
+  @apply max-w-full;
+}
+
+.prose th,
+.prose td {
+  border-bottom: 1px solid var(--tw-prose-th-borders);
+  padding: 0.75em 1em;
+}
+
+.prose th {
+  color: var(--muted-foreground);
+  font-weight: bold;
+}
+
+.prose img {
+  max-height: 300px;
+  object-fit: cover;
+  @apply max-w-full;
+  height: auto;
+}
+
+/* Dark Mode Prose Styles */
+.prose-dark {
+  --tw-prose-body: hsl(var(--foreground));
+  --tw-prose-headings: hsl(var(--foreground));
+  --tw-prose-lead: hsl(var(--foreground));
+  --tw-prose-links: hsl(var(--primary));
+  --tw-prose-bold: hsl(var(--foreground));
+  --tw-prose-counters: hsl(var(--muted-foreground));
+  --tw-prose-bullets: hsl(var(--muted-foreground));
+  --tw-prose-hr: hsl(var(--border));
+  --tw-prose-quotes: hsl(var(--foreground));
+  --tw-prose-quote-borders: hsl(var(--border));
+  --tw-prose-captions: hsl(var(--muted-foreground));
+  --tw-prose-code: hsl(var(--accent));
+  --tw-prose-pre-code: hsl(var(--foreground));
+  --tw-prose-pre-bg: hsl(var(--background));
+  --tw-prose-th-borders: hsl(var(--border));
+  --tw-prose-td-borders: hsl(var(--border));
+  color: var(--tw-prose-body);
+}
+
+/* Apply dark mode styles when .dark class is present */
+.dark .prose {
+  @apply prose-dark;
+}
+
+

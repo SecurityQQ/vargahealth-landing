@@ -1,6 +1,6 @@
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
 // import { GoogleAnalytics } from '@next/third-parties/google'
-import { headers } from 'next/headers'
+// import { headers } from 'next/headers'
 // import Script from 'next/script'
 
 
@@ -36,11 +36,11 @@ const EU_COUNTRY_CODES = [
 
 
 export function Analytics() {
-  const countryCode = headers().get('x-vercel-ip-country') || 'US';
+  // const countryCode = headers().get('x-vercel-ip-country') || 'US';
 
-  if (EU_COUNTRY_CODES.includes(countryCode)) {
-    return <VercelAnalytics />;
-  }
+  // if (EU_COUNTRY_CODES.includes(countryCode)) {
+  //   return <VercelAnalytics />;
+  // }
 
   return (
     <>

@@ -91,7 +91,7 @@ export default function BrogevityLanding() {
 
       <main className="flex-grow">
         {/* Urgency Message */}
-        <div className="bg-accent text-accent-foreground py-2 text-center">
+        <div className="bg-accent text-accent-foreground p-2 text-center">
           <p>
             <AlertTriangle className="inline-block mr-2" />
             {isWaitlistFull
@@ -162,7 +162,7 @@ export default function BrogevityLanding() {
         </section>
 
         {/* Solution Introduction */}
-        <section className="py-16 bg-muted">
+        <section className="py-16 bg-muted" id='solution'>
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-4">
               {`And That's Why We're Bringing a Solution for You!`}
@@ -289,7 +289,7 @@ export default function BrogevityLanding() {
                           : `Hurry! Only 100 spots available! ${totalContacts}/100 spots are taken. Apply immediately!`}
                         </p>
                       </div>
-                      {!isWaitlistFull && (
+                      {(
                         <>
                           <Input
                             type="text"

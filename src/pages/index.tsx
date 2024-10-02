@@ -1,10 +1,7 @@
-// pages/index.tsx
-
 import { useState, useEffect } from 'react';
-import Head from 'next/head'
-import Image from 'next/image'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import Head from 'next/head';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   CheckCircle,
   Brain,
@@ -13,15 +10,12 @@ import {
   BarChart,
   ListChecks,
   AlertTriangle,
-} from 'lucide-react'
+} from 'lucide-react';
 
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import FeatureCard from '@/components/FeatureCard'
-import FounderCard from '@/components/FounderCard'
-import { Resend } from 'resend';
-
-
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import FeatureCard from '@/components/FeatureCard';
+import FounderCard from '@/components/FounderCard';
 
 export default function BrogevityLanding() {
   const [email, setEmail] = useState('');
@@ -29,8 +23,7 @@ export default function BrogevityLanding() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [totalContacts, setTotalContacts] = useState(0); // State to store total waitlist contacts
   const [isWaitlistFull, setIsWaitlistFull] = useState(false); // State to check if waitlist is full
-
-  
+  const [loading, setLoading] = useState(true); // New loading state
 
   useEffect(() => {
     const fetchWaitlistCount = async () => {
@@ -41,6 +34,8 @@ export default function BrogevityLanding() {
         setIsWaitlistFull(data.totalContacts >= 100); // Check if waitlist is full
       } catch (error) {
         console.error('Failed to fetch total contacts:', error);
+      } finally {
+        setLoading(false); // Set loading to false once data is fetched
       }
     };
 
@@ -48,32 +43,31 @@ export default function BrogevityLanding() {
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const response = await fetch('/api/waitlist', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        firstName,
-      }),
-    });
+    try {
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          firstName,
+        }),
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (response.ok) {
-      setIsSubmitted(true);
-    } else {
-      console.error('Failed to join waitlist:', data.error);
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        console.error('Failed to join waitlist:', data.error);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
     }
-  } catch (error) {
-    console.error('Error submitting form:', error);
-  }
-};
-
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
@@ -84,7 +78,6 @@ export default function BrogevityLanding() {
           content="Brogevity AI uses cutting-edge AI to provide personalized, actionable longevity strategies. Join our waitlist today!"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* Add Open Graph and Twitter meta tags */}
       </Head>
 
       <Header />
@@ -94,7 +87,9 @@ export default function BrogevityLanding() {
         <div className="bg-accent text-accent-foreground p-2 text-center">
           <p>
             <AlertTriangle className="inline-block mr-2" />
-            {isWaitlistFull
+            {loading
+              ? 'Only 100 slots left!'
+              : isWaitlistFull
               ? 'Uh oh... The first 100 spots are taken, but you can still apply and be put on a waitlist.'
               : `Hurry! Only 100 spots available! ${totalContacts}/100 spots are taken. Apply immediately!`}
           </p>
@@ -113,7 +108,10 @@ export default function BrogevityLanding() {
                 <span className="text-primary">In Minutes, Not Years.</span>
               </h1>
               <p className="text-xl mb-8">
-                Dynamic AI Interface that cuts through the noise for <strong>trustworthy & personalized longevity actions</strong>
+                Dynamic AI Interface that cuts through the noise for{' '}
+                <strong>
+                  trustworthy & personalized longevity actions
+                </strong>
               </p>
               <Button
                 size="lg"
@@ -162,7 +160,7 @@ export default function BrogevityLanding() {
         </section>
 
         {/* Solution Introduction */}
-        <section className="py-16 bg-muted" id='solution'>
+        <section className="py-16 bg-muted" id="solution">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-4">
               {`And That's Why We're Bringing a Solution for You!`}
@@ -178,7 +176,7 @@ export default function BrogevityLanding() {
         </section>
 
         {/* Features Section */}
-        <section className="py-16 bg-background" id='how-it-works'>
+        <section className="py-16 bg-background" id="how-it-works">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12">
               {"We're Building the Super Intelligence for Personalized Longevity!"}
@@ -214,7 +212,7 @@ export default function BrogevityLanding() {
         </section>
 
         {/* Founder Trust Section */}
-        <section className="py-16 bg-background" id='founders'>
+        <section className="py-16 bg-background" id="founders">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-4">
               {"Why You Should Trust Brogevity AI"}
@@ -250,7 +248,7 @@ export default function BrogevityLanding() {
         </section>
 
         {/* Closing CTA */}
-        <section className="py-16 bg-muted" id='waitlist'>
+        <section className="py-16 bg-muted" id="waitlist">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-4">
               {`The Platform Will Soon Be Available... Be One of Our First Users!`}
@@ -284,37 +282,35 @@ export default function BrogevityLanding() {
                       <div className="mb-2">
                         <h3>Join the Waitlist Now</h3>
                         <p className="text-sm text-muted-foreground">
-                        {isWaitlistFull
-                          ? `Uh oh... The first 100 spots are taken, but you can still apply and be put on a waitlist.`
-                          : `Hurry! Only 100 spots available! ${totalContacts}/100 spots are taken. Apply immediately!`}
+                          {loading
+                            ? `Only 100 slots left!`
+                            : isWaitlistFull
+                            ? `Uh oh... The first 100 spots are taken, but you can still apply and be put on a waitlist.`
+                            : `Hurry! Only 100 spots available! ${totalContacts}/100 spots are taken. Apply immediately!`}
                         </p>
                       </div>
-                      {(
-                        <>
-                          <Input
-                            type="text"
-                            placeholder="Enter your first name"
-                            value={firstName}
-                            onChange={(e) => setFirstName(e.target.value)}
-                            required
-                            className="mb-4"
-                          />
-                          <Input
-                            type="email"
-                            placeholder="Enter your email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            className="mb-4"
-                          />
-                          <Button
-                            type="submit"
-                            className="w-full bg-primary hover:bg-primary-dark text-primary-foreground"
-                          >
-                            Join Waitlist
-                          </Button>
-                        </>
-                      )}
+                      <Input
+                        type="text"
+                        placeholder="Enter your first name"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        required
+                        className="mb-4"
+                      />
+                      <Input
+                        type="email"
+                        placeholder="Enter your email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        className="mb-4"
+                      />
+                      <Button
+                        type="submit"
+                        className="w-full bg-primary hover:bg-primary-dark text-primary-foreground"
+                      >
+                        Join Waitlist
+                      </Button>
                     </div>
                   </form>
                 ) : (
@@ -327,10 +323,9 @@ export default function BrogevityLanding() {
             </div>
           </div>
         </section>
-
       </main>
 
       <Footer />
     </div>
-  )
+  );
 }

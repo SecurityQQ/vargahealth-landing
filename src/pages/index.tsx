@@ -278,7 +278,7 @@ export default function BrogevityLanding() {
               See Brogevity AI in Action
             </h2>
             <div className="max-w-3xl mx-auto">
-              <AspectRatio ratio={16 / 9} className="bg-gradient-to-r from-primary to-secondary rounded-lg shadow-lg p-12 overflow-hidden">
+              <AspectRatio ratio={16 / 9} className="bg-gradient-to-r from-primary to-secondary rounded-lg shadow-lg p-4 md:p-12 overflow-hidden">
                 <div className="relative w-full h-full">
                   <Image
                     src={screenshots[currentSlide]}

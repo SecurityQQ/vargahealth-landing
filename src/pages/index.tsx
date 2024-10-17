@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -10,12 +11,15 @@ import {
   BarChart,
   ListChecks,
   AlertTriangle,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FeatureCard from '@/components/FeatureCard';
 import FounderCard from '@/components/FounderCard';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 export default function BrogevityLanding() {
   const [email, setEmail] = useState('');
@@ -24,6 +28,12 @@ export default function BrogevityLanding() {
   const [totalContacts, setTotalContacts] = useState(0); // State to store total waitlist contacts
   const [isWaitlistFull, setIsWaitlistFull] = useState(false); // State to check if waitlist is full
   const [loading, setLoading] = useState(true); // New loading state
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const screenshots = [
+    '/socialproof/1.jpg',
+    '/socialproof/2.jpg',
+  ];
 
   useEffect(() => {
     const fetchWaitlistCount = async () => {
@@ -40,6 +50,14 @@ export default function BrogevityLanding() {
     };
 
     fetchWaitlistCount();
+  }, []);
+
+  useEffect(() => {
+    const autoScroll = setInterval(() => {
+      nextSlide();
+    }, 3000); // Auto scroll every 3 seconds
+
+    return () => clearInterval(autoScroll); // Clear interval on component unmount
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -67,6 +85,13 @@ export default function BrogevityLanding() {
     } catch (error) {
       console.error('Error submitting form:', error);
     }
+  };
+   const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % screenshots.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + screenshots.length) % screenshots.length);
   };
 
   return (
@@ -243,6 +268,47 @@ export default function BrogevityLanding() {
                 ]}
                 twitter={"https://x.com/burninganna"}
               />
+            </div>
+          </div>
+        </section>
+
+          <section className="py-16 bg-muted">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              See Brogevity AI in Action
+            </h2>
+            <div className="max-w-3xl mx-auto">
+              <AspectRatio ratio={16 / 9} className="bg-gradient-to-r from-primary to-secondary rounded-lg shadow-lg p-12 overflow-hidden">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={screenshots[currentSlide]}
+                    alt={`Brogevity AI Screenshot ${currentSlide + 1}`}
+                    layout="fill"
+                    objectFit="contain"
+                    placeholder="blur"
+                    blurDataURL="/placeholder.svg?height=450&width=800"
+                  />
+                </div>
+                <Button
+                  onClick={prevSlide}
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/50 hover:bg-white/75 text-gray-800 rounded-full"
+                  size="icon"
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </Button>
+                <Button
+                  onClick={nextSlide}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/50 hover:bg-white/75 text-gray-800 rounded-full"
+                  size="icon"
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </Button>
+              </AspectRatio>
+            </div>
+            <div className="text-center mt-4">
+              <p className="text-lg font-semibold">
+                Join {totalContacts} others who are already benefiting from personalized longevity insights!
+              </p>
             </div>
           </div>
         </section>

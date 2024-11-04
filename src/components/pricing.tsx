@@ -153,10 +153,13 @@ export default function PricingTable() {
                 {/* Button section */}
                 <div className="h-24">
                   <Button
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground mb-2"
-                    size="lg"
-                    onClick={(e) => e.stopPropagation()} // Prevent redirect on button click
-                  >
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground mb-2"
+                      size="lg"
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevents the redirect from the parent div
+                        router.push(plan.url); // Redirects to the plan's URL
+                      }}
+                    >
                     {plan.cta}
                     {plan.name.includes("Annual") && <Zap className="ml-2 h-4 w-4" />}
                   </Button>

@@ -1,68 +1,56 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog"
-import { Award, Brain, Users } from "lucide-react"
-import SocialProof from "./SocialProof"
+import { useState, useEffect, useRef } from 'react';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
+import { Award, Brain, Users } from "lucide-react";
+import SocialProof from "./SocialProof";
+import { sendIntroEmail } from '@/utils/emailService';
 
 export default function Hero() {
-  const backgroundRef = useRef<HTMLDivElement>(null)
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const [email, setEmail] = useState('')
-  const [name, setName] = useState('')
+  const backgroundRef = useRef<HTMLDivElement>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
 
   useEffect(() => {
-    const background = backgroundRef.current
-    if (!background) return
+    const background = backgroundRef.current;
+    if (!background) return;
 
-    let animationFrameId: number
-
+    let animationFrameId: number;
     const animate = () => {
-      background.style.transform = `translateX(${Date.now() / 100 % 50}px)`
-      animationFrameId = requestAnimationFrame(animate)
-    }
+      background.style.transform = `translateX(${Date.now() / 100 % 50}px)`;
+      animationFrameId = requestAnimationFrame(animate);
+    };
 
-    animate()
-
+    animate();
     return () => {
-      cancelAnimationFrame(animationFrameId)
-    }
-  }, [])
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
 
   const handleSubscribeClick = () => {
     if (email) {
-      setIsDialogOpen(true)
+      setIsDialogOpen(true);
     } else {
-      alert('Please enter your email')
+      alert('Please enter your email');
     }
-  }
+  };
 
   const handleSendEmail = async () => {
     if (name && email) {
-      try {
-        const response = await fetch('/api/send-intro-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email, name })
-        })
-        if (response.ok) {
-          alert('Intro email sent successfully!')
-          setIsDialogOpen(false)
-        } else {
-          alert('Failed to send the email')
-        }
-      } catch (error) {
-        console.error('Error sending email:', error)
-        alert('An error occurred while sending the email')
+      const isSuccess = await sendIntroEmail(email, name);
+      if (isSuccess) {
+        alert('Intro email sent successfully!');
+        setIsDialogOpen(false);
+      } else {
+        alert('Failed to send the email');
       }
     } else {
-      alert('Please fill in your name')
+      alert('Please fill in your name');
     }
-  }
+  };
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-background to-accent/10 text-foreground">

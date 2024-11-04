@@ -16,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const response = await resend.contacts.update({
         id: contactId as string, // Ensure contactId is a string
         audienceId: '986f795d-7f9a-4f6c-8851-b8cac79d258c', // Replace with your audienceId
-        subscribed: true, // Set subscribed to true
+        unsubscribed: false, // Set unsubscribed to true
       });
 
       // Redirect user to a confirmation success page or show a message

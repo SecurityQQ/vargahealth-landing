@@ -35,7 +35,7 @@ export default function StickyEmailCollection() {
     if (name && email) {
       const isSuccess = await sendIntroEmail(email, name);
       if (isSuccess) {
-        alert('Intro email sent successfully!');
+        alert('Check Your Email and Confirm Subscription!');
         setIsDialogOpen(false);
       } else {
         alert('Failed to send the email');
@@ -55,7 +55,7 @@ export default function StickyEmailCollection() {
           placeholder="Type your email..."
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full sm:w-96 px-6 py-3 rounded-full bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary border border-accent"
+          className="w-full px-6 py-3 rounded-full bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary border border-accent"
         />
         <Button 
           className="w-full sm:w-auto px-6 py-6 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"

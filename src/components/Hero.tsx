@@ -42,7 +42,7 @@ export default function Hero() {
     if (name && email) {
       const isSuccess = await sendIntroEmail(email, name);
       if (isSuccess) {
-        alert('Intro email sent successfully!');
+        alert('Check Your Email and Confirm Subscription!');
         setIsDialogOpen(false);
       } else {
         alert('Failed to send the email');

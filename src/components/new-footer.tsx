@@ -3,7 +3,7 @@ import { Twitter, FileText } from "lucide-react"
 
 export default function Component() {
   return (
-    <footer className="w-full bg-muted py-6 px-4 mb-20">
+    <footer className="w-full bg-muted py-6 px-4 mb-40 md:mb-20">
       <div className="container mx-auto max-w-7xl">
         <div className="flex flex-col items-center justify-center space-y-4">
           <div className="flex items-center space-x-6">

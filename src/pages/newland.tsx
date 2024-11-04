@@ -23,7 +23,7 @@ export default function LandingPage() {
       <Hero />
 
       <Testimonials />
-
+      
 
       {/* Paywall with onboarding and benefits */}
       {/*<EnhancedPaywallWithOnBoarding />*/}

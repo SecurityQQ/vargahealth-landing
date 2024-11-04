@@ -13,7 +13,7 @@
     --card-foreground: 0 0% 20%;    /* Dark text on cards */
     --border: 229 14% 85%;          /* Light border color */
     --input: 229 14% 95%;           /* Light input background */
-    --primary: 210 100% 70%;        /* Bright blue for primary buttons */
+    --primary: 229 100% 62%;         /* Bright blue for primary buttons */
     --primary-foreground: 0 0% 100%;/* White text for buttons */
     --secondary: 229 14% 85%;       /* Muted secondary background */
     --secondary-foreground: 229 10% 50%; /* Muted text for secondary elements */
@@ -23,6 +23,11 @@
     --destructive-foreground: 0 0% 100%; /* White text on destructive buttons */
     --ring: 200 100% 60%;           /* Bright blue ring color */
     --radius: 0.5rem;
+    
+    --warning: 52 100% 60%; /* Yellow for warning */
+    --warning-foreground: 0 0% 15%; /* Dark color (near black) for text on warning background */
+
+
     
     --chart-1: 210 100% 70%;
     --chart-2: 229 14% 85%;
@@ -76,6 +81,10 @@
       --destructive: 3 89% 54%;        /* Red for destructive actions */
       --destructive-foreground: 0 0% 100%; /* White text on destructive buttons */
       --ring: 229 100% 62%;            /* Bright blue ring color */
+
+      --warning: 48 100% 50%; /* Yellow for warning */
+      --warning-foreground: 0 0% 100%; /* White for text on warning background */
+
       
       --chart-1: 209 80% 52%;
       --chart-2: 229 23% 37%;

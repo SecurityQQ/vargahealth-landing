@@ -1,14 +1,35 @@
-//components/pricing
-
 'use client'
 
-import { useRouter } from 'next/navigation' // Import useRouter from next/navigation for Next.js App Router
-import { Check, X, Zap } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation'; // Use `useSearchParams` for extracting query parameters
+import { Check, X, Zap } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { env } from "@/env.mjs";
 
 export default function PricingTable() {
-  const router = useRouter(); // Initialize the router
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const contactId = searchParams.get('contactId');
+    if (contactId) {
+      // Call the API endpoint with the contactId
+      fetch(`/api/confirm-subscription?contactId=${contactId}`, {
+        method: 'GET',
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to confirm subscription');
+        }
+        console.log('Subscription confirmed');
+      })
+      .catch(error => {
+        console.error('Error confirming subscription:', error);
+      });
+    }
+  }, [searchParams]);
+
 
   const plans = [
     {
@@ -26,8 +47,9 @@ export default function PricingTable() {
         "No Knowledge Hub Reports",
         "No Claim Tracking",
       ],
-      url: "/pricing/free-plan", // Add a URL for redirect,
-      cta: "Get Started"
+      url: "https://alpha.brogevity.com", // Add a URL for redirect,
+      cta: "Get Started",
+      stripeId: null,
     },
     {
       name: "Standard Plan (Monthly)",
@@ -45,8 +67,9 @@ export default function PricingTable() {
         "Our Partners' Discounts",
         "Real-Time Alerts",
       ],
-      url: "/pricing/standard-monthly", // Add a URL for redirect
-      cta: "Subscribe"
+      url: "https://buy.stripe.com/8wM7tM1qTdrK4co3cg", // Add a URL for redirect
+      cta: "Subscribe",
+      stripeId: env.NEXT_PUBLIC_STRIPE_PRICE_ID_MONTHLY,
     },
     {
       name: "Standard Plan (Annual)",
@@ -66,8 +89,9 @@ export default function PricingTable() {
         "Our Partners' Discounts",
         "Real-Time Alerts",
       ],
-      url: "/pricing/standard-annual", // Add a URL for redirect
-      cta: "Subscribe (Save 35%)"
+      url: "https://buy.stripe.com/bIYg0id9B5Zi38kfZ3", // Add a URL for redirect
+      cta: "Subscribe (Save 35%)",
+      stripeId: env.NEXT_PUBLIC_STRIPE_PRICE_ID_YEARLY
     },
   ]
 
@@ -84,7 +108,7 @@ export default function PricingTable() {
               onClick={() => router.push(plan.url)} // Redirect on click
               className={`cursor-pointer rounded-2xl p-6 flex flex-col relative ${
                 plan.name.includes("Annual")
-                  ? "bg-accent/50 border-2 border-primary shadow-lg z-10"
+                  ? "bg-accent/20 border-2 border-primary shadow-lg z-10"
                   : "bg-card border border-border"
               }`}
             >
@@ -171,7 +195,7 @@ export default function PricingTable() {
                     <div className="space-y-2">
                       {plan.comingSoon.map((feature) => (
                         <div key={feature} className="flex items-start gap-2">
-                          <Badge className="bg-warning/20 text-warning hover:bg-warning/20">
+                          <Badge className="bg-warning/50 text-warning-foreground hover:bg-warning/20">
                             Soon
                           </Badge>
                           <span className="text-muted-foreground">{feature}</span>
@@ -207,9 +231,9 @@ export default function PricingTable() {
           animation: shine 3.5s infinite cubic-bezier(0.4, 0.0, 0.2, 1);
           background-image: linear-gradient(
             90deg,
-            rgba(0, 0, 230, 0.3) 0%,
-            rgba(0, 0, 230, 0.8) 50%,
-            rgba(0, 0, 238, 0.9) 100%
+            rgba(0, 0, 230, 0.2) 0%,
+            rgba(0, 0, 230, 0.5) 50%,
+            rgba(0, 0, 238, 0.3) 100%
           );
           opacity: 0.75;
         }

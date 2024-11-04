@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import fs from 'fs';
 import path from 'path';
 import { Resend } from 'resend';
-
+import { env } from '@/env.mjs';
 const resend = new Resend(process.env.RESEND_API_KEY); // Ensure your API key is set
 
 interface ContactResponse {
@@ -49,9 +49,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       let htmlContent = fs.readFileSync(templatePath, 'utf8');
 
       // Replace the placeholder in the template with the actual confirmation URL
-      const confirmUrl = `http://localhost:3000/api/confirm-subscription?contactId=${contactId}`;
+      const confirmUrl = `${env.NEXT_PUBLIC_APP_URL}/premium?contactId=${contactId}`;
 
-      console.log("confirmUrl: , ", confirmUrl)
+      
       htmlContent = htmlContent.replace('$confirm_url', confirmUrl);
 
       // Send the email using Resend

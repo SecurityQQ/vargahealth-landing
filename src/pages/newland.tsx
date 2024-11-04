@@ -49,7 +49,7 @@ export default function LandingPage() {
       />
       <EnhancedCompanies />
       {/*<CommunitySection />*/}
-      <MembershipBenefitsSection />
+      {/*<MembershipBenefitsSection />*/}
 
 
       <FAQ />

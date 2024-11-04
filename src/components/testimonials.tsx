@@ -30,7 +30,7 @@ export default function Component() {
     <div className="px-4 py-12 md:px-6 lg:px-8 bg-accent rounded-lg">
       <div className="mx-auto max-w-6xl space-y-12">
         <section className="space-y-4">
-          <h2 className="text-2xl font-bold text-accent-foreground">What Our Premium Members Say</h2>
+          <h2 className="text-2xl font-bold text-accent-foreground">What Our Newsletter Subscribers Say</h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((testimonial, i) => (
               <Card key={i} className="bg-card rounded-lg">

@@ -25,7 +25,7 @@ const companyLogos = [
 const influencers = ['Peter Attia', 'Rhonda Patrick', 'Andrew Huberman', 'Bryan Johnson']
 
 
-export default function EnhancedPaywallWithOnBoarding() {
+export function EnhancedPaywallWithOnBoarding() {
   const [email, setEmail] = useState('')
   const [isSmallHeight, setIsSmallHeight] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
@@ -195,7 +195,7 @@ export default function EnhancedPaywallWithOnBoarding() {
             </div>
           )}
         </div>
-        <Testimonials />
+        
       </div>
 
       <EnhancedCompanies />
@@ -203,7 +203,7 @@ export default function EnhancedPaywallWithOnBoarding() {
   )
 }
 
-function EnhancedCompanies() {
+export function EnhancedCompanies() {
   return (
     <div className="w-full bg-muted py-8 px-6 shadow-lg rounded-t-3xl">
       <div className="max-w-7xl mx-auto">

@@ -1,3 +1,5 @@
+//components/pricing
+
 'use client'
 
 import { useRouter } from 'next/navigation' // Import useRouter from next/navigation for Next.js App Router
@@ -24,7 +26,8 @@ export default function PricingTable() {
         "No Knowledge Hub Reports",
         "No Claim Tracking",
       ],
-      url: "/pricing/free-plan", // Add a URL for redirect
+      url: "/pricing/free-plan", // Add a URL for redirect,
+      cta: "Get Started"
     },
     {
       name: "Standard Plan (Monthly)",
@@ -43,6 +46,7 @@ export default function PricingTable() {
         "Real-Time Alerts",
       ],
       url: "/pricing/standard-monthly", // Add a URL for redirect
+      cta: "Subscribe"
     },
     {
       name: "Standard Plan (Annual)",
@@ -50,7 +54,7 @@ export default function PricingTable() {
       badge: "Most Popular",
       complementary: true,
       features: [
-        "17% cheaper than subscribing monthly",
+        "35% cheaper than subscribing monthly",
         "Personalized Newsletter Every Week",
         "Access to Brogevity.com Database",
         "Database Advanced Search & Filters",
@@ -63,12 +67,15 @@ export default function PricingTable() {
         "Real-Time Alerts",
       ],
       url: "/pricing/standard-annual", // Add a URL for redirect
+      cta: "Subscribe (Save 35%)"
     },
   ]
 
   return (
     <div className="min-h-screen bg-background text-foreground p-8">
-      <h1 className='pb-4 text-center'>🔥 Enjoy November 2024 Early Launch Prices</h1>
+      <h1 className='pb-4 text-center'>Your Subscription Is Confirmed</h1>
+      <h3 className='pb-4 text-center'>🔥Enjoy November 2024 Early Launch Prices</h3>
+      
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {plans.map((plan) => (
@@ -126,7 +133,7 @@ export default function PricingTable() {
                     size="lg"
                     onClick={(e) => e.stopPropagation()} // Prevent redirect on button click
                   >
-                    {plan.price === 0 ? "Get Started" : "Subscribe"}
+                    {plan.cta}
                     {plan.name.includes("Annual") && <Zap className="ml-2 h-4 w-4" />}
                   </Button>
                 </div>

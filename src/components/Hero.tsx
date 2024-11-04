@@ -1,12 +1,17 @@
 'use client'
 
+import { useState, useEffect, useRef } from 'react'
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog"
 import { Award, Brain, Users } from "lucide-react"
 import SocialProof from "./SocialProof"
-import { useEffect, useRef } from "react"
 
 export default function Hero() {
   const backgroundRef = useRef<HTMLDivElement>(null)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
 
   useEffect(() => {
     const background = backgroundRef.current
@@ -25,6 +30,39 @@ export default function Hero() {
       cancelAnimationFrame(animationFrameId)
     }
   }, [])
+
+  const handleSubscribeClick = () => {
+    if (email) {
+      setIsDialogOpen(true)
+    } else {
+      alert('Please enter your email')
+    }
+  }
+
+  const handleSendEmail = async () => {
+    if (name && email) {
+      try {
+        const response = await fetch('/api/send-intro-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email, name })
+        })
+        if (response.ok) {
+          alert('Intro email sent successfully!')
+          setIsDialogOpen(false)
+        } else {
+          alert('Failed to send the email')
+        }
+      } catch (error) {
+        console.error('Error sending email:', error)
+        alert('An error occurred while sending the email')
+      }
+    } else {
+      alert('Please fill in your name')
+    }
+  }
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-background to-accent/10 text-foreground">
@@ -48,7 +86,7 @@ export default function Hero() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 rounded-full bg-accent/20 px-4 py-1 text-sm backdrop-blur-sm mx-auto border border-accent/30">
             <Award className="h-4 w-4 text-accent" />
-            <span className="text-muted-foreground font-semibold">Powered by AI</span>
+            <span className="text-muted-foreground font-semibold">#1 Longevity Newsletter by AI</span>
           </div>
 
           {/* Main Content */}
@@ -56,15 +94,12 @@ export default function Hero() {
             <h1 className="text-4xl font-bold tracking-tight sm:text-6xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Become a Smarter Life Optimizer
             </h1>
-            <p className="max-w-2xl text-lg text-muted-foreground">
-              Get weekly updates about longevity and biohacking. Our Brogevity AI will watch hours of videos for you and give you a personalized summary
-            </p>
-            
+
             {/* Features List */}
             <ul className="space-y-4">
               <li className="flex items-center gap-2">
                 <Brain className="h-5 w-5 text-primary" />
-                <span className="font-bold text-muted-foreground">Get a personalized newsletter about longevity every week</span>
+                <span className="text-xl font-bold text-muted-foreground">Get a personalized newsletter about longevity every week</span>
               </li>
               <li className="flex items-center gap-2">
                 <svg viewBox="0 0 24 24" className="h-5 w-5 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
@@ -72,30 +107,52 @@ export default function Hero() {
                   <path d="M9 12h6" />
                   <path d="M12 9v6" />
                 </svg>
-                <span className="font-bold text-muted-foreground">Explore over 2,000 life optimization claims on Brogevity.com database</span>
+                <span className="text-xl font-bold text-muted-foreground">Explore over 2,000 life optimization claims on Brogevity.com database</span>
               </li>
               <li className="flex items-center gap-2">
                 <Users className="h-5 w-5 text-primary" />
-                <span className="font-bold text-muted-foreground">Join a community of people who care about latest bio discoveries</span>
+                <span className="text-xl font-bold text-muted-foreground">Join a community of people who care about latest bio discoveries</span>
               </li>
             </ul>
+            
             <div className="block md:hidden w-full max-w-md pt-3">
-            <SignInButton/>
-          </div>
+              <SignInButton email={email} setEmail={setEmail} onSubscribeClick={handleSubscribeClick} />
+            </div>
             <SocialProof/>
           </div>
         </div>
 
         {/* Right Column - Sign Up Card */}
         <div className="hidden md:block w-full max-w-md">
-          <SignInButton/>
+          <SignInButton email={email} setEmail={setEmail} onSubscribeClick={handleSubscribeClick} />
         </div>
       </div>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Enter Your Name</DialogTitle>
+            <DialogDescription>
+              Please provide your name to complete the subscription process.
+            </DialogDescription>
+          </DialogHeader>
+          <Input
+            type="text"
+            placeholder="Your name..."
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full"
+          />
+          <DialogFooter>
+            <Button onClick={handleSendEmail}>Confirm and Subscribe</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </section>
   )
 }
 
-function SignInButton() {
+function SignInButton({ email, setEmail, onSubscribeClick }: { email: string; setEmail: (email: string) => void; onSubscribeClick: () => void }) {
   return (
     <div className="w-full max-w-md p-4 md:p-8 rounded-3xl bg-card/80 backdrop-blur-sm shadow-xl relative border border-accent/20">
       {/* Free label */}
@@ -105,16 +162,18 @@ function SignInButton() {
 
       {/* Email input */}
       <div className="mb-4">
-        <input
+        <Input
           type="email"
           placeholder="Type your email..."
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className="w-full px-6 py-3 rounded-full bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary border border-accent"
         />
       </div>
 
       {/* Main CTA button */}
-      <Button className="w-full px-6 py-6 mb-4 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-        Become a Smarter Life Optimizer +
+      <Button className="w-full px-6 py-6 mb-4 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1" onClick={onSubscribeClick}>
+        Subscribe
       </Button>
       
       {/* Bottom text */}

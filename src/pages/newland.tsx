@@ -12,6 +12,7 @@ import FAQ from "@/components/faq"
 import Footer from "@/components/new-footer"
 import StickyEmailCollection from '@/components/sticky-email-collection'
 import DataBaseAcceess from "@/components/database-access-section"
+import { EnhancedCompanies } from '@/components/paywall'
 // Ensure to import any global styles if required
 // import '../styles/globals.css'; (Adjust the path as necessary)
 
@@ -23,14 +24,15 @@ export default function LandingPage() {
 
       <Testimonials />
 
+
       {/* Paywall with onboarding and benefits */}
       {/*<EnhancedPaywallWithOnBoarding />*/}
        <ContentSection
         title="Stay Informed"
         highlightedText="Without the Effort"
-        description="Brogevity AI summarizes up to 100 hours of expert content each week, so you receive a concise, 10-minute read delivered to your inbox"
-        cardTitle="Just set your preferences, and AI will explore content for you"
-        cardDescription="Every week our AI sends you a personalized email, so you can have more time to be healthy, productive, focused"
+        description="Brogevity AI turns 100+ hours of expert content into a 10-minute weekly summary, delivered to your inbox"
+        cardTitle=""
+        cardDescription=""
         imageSrc="/paywall/before-after.webp"
         imageAlt="AI-generated content preview"
         imageAspectRatio="video"
@@ -45,8 +47,10 @@ export default function LandingPage() {
         imageAlt="Brogevity database preview"
         imageAspectRatio="video"
       />
+      <EnhancedCompanies />
       {/*<CommunitySection />*/}
       <MembershipBenefitsSection />
+
 
       <FAQ />
 

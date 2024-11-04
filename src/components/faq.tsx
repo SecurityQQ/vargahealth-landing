@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import {
   Accordion,
   AccordionContent,
@@ -13,38 +12,11 @@ type FAQ = {
 };
 
 type FAQComponentProps = {
-  faqs: FAQ[];
+  faqs?: FAQ[];
 };
 
-function FAQComponent({ faqs }: FAQComponentProps) {
-  return (
-    <section className="w-full max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-      <h2 className="text-3xl font-bold text-center mb-6">Frequently Asked Questions</h2>
-      <Accordion type="single" collapsible className="w-full">
-        {faqs.map((faq, index) => (
-          <AccordionItem key={index} value={`item-${index}`}>
-            <AccordionTrigger>{faq.question}</AccordionTrigger>
-            <AccordionContent>
-              <Markdown>{faq.answer}</Markdown>
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </section>
-  );
-}
-
-FAQComponent.propTypes = {
-  faqs: PropTypes.arrayOf(
-    PropTypes.shape({
-      question: PropTypes.string.isRequired,
-      answer: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-};
-
-FAQComponent.defaultProps = {
-  faqs: [
+function FAQComponent({ 
+  faqs = [
     {
       question: "What is Brogevity AI?",
       answer: "Brogevity AI is an agent that helps to summarize enormous amounts of content like YouTube videos, podcasts, or scientific literature."
@@ -77,7 +49,23 @@ FAQComponent.defaultProps = {
       question: "I found claims that should be deleted from the platform, what should I do?",
       answer: "Submit such claims and the reason why they need to be reviewed for deletion to review@brogevity.com."
     }
-  ],
-};
+  ]
+}: FAQComponentProps) {
+  return (
+    <section className="w-full max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <h2 className="text-3xl font-bold text-center mb-6">Frequently Asked Questions</h2>
+      <Accordion type="single" collapsible className="w-full">
+        {faqs.map((faq, index) => (
+          <AccordionItem key={index} value={`item-${index}`}>
+            <AccordionTrigger>{faq.question}</AccordionTrigger>
+            <AccordionContent>
+              <Markdown>{faq.answer}</Markdown>
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    </section>
+  );
+}
 
 export default FAQComponent;

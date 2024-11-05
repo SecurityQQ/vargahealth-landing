@@ -1,21 +1,23 @@
+"use client"
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import Markdown from "react-markdown";
+} from "@/components/ui/accordion"
+import Markdown from "react-markdown"
 
 type FAQ = {
-  question: string;
-  answer: string;
-};
+  question: string
+  answer: string
+}
 
 type FAQComponentProps = {
-  faqs?: FAQ[];
-};
+  faqs?: FAQ[]
+}
 
-function FAQComponent({ 
+export default function Component({ 
   faqs = [
     {
       question: "What is Brogevity AI?",
@@ -47,7 +49,7 @@ function FAQComponent({
     },
     {
       question: "I found claims that should be deleted from the platform, what should I do?",
-      answer: "Submit such claims and the reason why they need to be reviewed for deletion to review@brogevity.com."
+      answer: "Submit such claims and the reason why they need to be reviewed for deletion to hello@brogevity.com."
     }
   ]
 }: FAQComponentProps) {
@@ -56,16 +58,16 @@ function FAQComponent({
       <h2 className="text-3xl font-bold text-center mb-6">Frequently Asked Questions</h2>
       <Accordion type="single" collapsible className="w-full">
         {faqs.map((faq, index) => (
-          <AccordionItem key={index} value={`item-${index}`}>
-            <AccordionTrigger>{faq.question}</AccordionTrigger>
-            <AccordionContent>
-              <Markdown>{faq.answer}</Markdown>
+          <AccordionItem key={index} value={`item-${index}`} className="border-b">
+            <AccordionTrigger className="text-left py-4 px-0">
+              <h3 className="text-lg font-medium">{faq.question}</h3>
+            </AccordionTrigger>
+            <AccordionContent className="pb-4 px-0">
+              <Markdown className="text-sm text-gray-600">{faq.answer}</Markdown>
             </AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>
     </section>
-  );
+  )
 }
-
-export default FAQComponent;

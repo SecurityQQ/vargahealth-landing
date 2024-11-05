@@ -23,7 +23,7 @@ export default function LandingPage() {
       <Hero />
 
       <Testimonials />
-      
+
 
       {/* Paywall with onboarding and benefits */}
       {/*<EnhancedPaywallWithOnBoarding />*/}
@@ -35,16 +35,18 @@ export default function LandingPage() {
         cardDescription=""
         imageSrc="/paywall/before-after.webp"
         imageAlt="AI-generated content preview"
+        mobileImageSrc="/paywall/before-after-mobile.webp"
         imageAspectRatio="video"
       />
       <DataBaseAcceess />
       <ContentSection
         title="Don't be alone"
         highlightedText="Meet the Community"
-        description="We invite you to join our Free Reddit “Longevity Essentials” With 1000+ members, where you get community-proved tactics for the best version of your life. And for our premium members, we offer a Private Chat Group, where you find discussion about longevity topic that matters for you"
+        description='Join our free Reddit group, "Longevity Essentials," with 1,000+ members, and our premium-chat on Telegram'
         cardTitle='Discover "hidden gems" that work best for you'
         imageSrc="/paywall/paywall-3.webp"
         imageAlt="Brogevity database preview"
+        mobileImageSrc='/paywall/community-mobile.webp'
         imageAspectRatio="video"
       />
       <EnhancedCompanies />

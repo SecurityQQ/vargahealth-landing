@@ -61,7 +61,7 @@ export default function StickyEmailCollection() {
           className="w-full sm:w-auto px-6 py-6 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
           onClick={handleSubscribeClick}
         >
-          Become a Smarter Life Optimizer
+          Subscribe
         </Button>
       </div>
 

@@ -82,7 +82,7 @@ export default function Component() {
             <ul className="space-y-4">
               <li className="flex items-start gap-4">
                 <Brain className="h-6 w-6 mt-1 flex-shrink-0 text-primary" />
-                <span className="text-lg md:text-xl font-bold text-muted-foreground">Get a personalized newsletter about longevity every week</span>
+                <span className="text-lg md:text-xl text-muted-foreground">Get a personalized newsletter about longevity every week</span>
               </li>
               <li className="flex items-start gap-4">
                 <svg viewBox="0 0 24 24" className="h-6 w-6 mt-1 flex-shrink-0 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
@@ -90,11 +90,11 @@ export default function Component() {
                   <path d="M9 12h6" />
                   <path d="M12 9v6" />
                 </svg>
-                <span className="text-lg md:text-xl font-bold text-muted-foreground">Explore over 2,000 life optimization claims on Brogevity.com database</span>
+                <span className="text-lg md:text-xl text-muted-foreground">Explore over 2,000 life optimization claims on Brogevity.com database</span>
               </li>
               <li className="flex items-start gap-4">
                 <Users className="h-6 w-6 mt-1 flex-shrink-0 text-primary" />
-                <span className="text-lg md:text-xl font-bold text-muted-foreground">Join a community of people who care about latest bio discoveries</span>
+                <span className="text-lg md:text-xl text-muted-foreground">Join a community of people who care about latest bio discoveries</span>
               </li>
             </ul>
             

@@ -63,7 +63,7 @@ export default function ContentSection({
   return (
     <section className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
       <div className="text-center space-y-4 sm:space-y-6 mb-6 sm:mb-8">
-        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
+        <h2 className="text-3xl font-bold tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
           {title} <span className="text-primary">{highlightedText}</span>
         </h2>
         <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -77,7 +77,7 @@ export default function ContentSection({
         transition={{ duration: 0.5 }}
         className="md:px-6"
       >
-        <div className="bg-card text-card-foreground rounded-lg overflow-hidden shadow-lg">
+        <div className="bg-card text-card-foreground rounded-lg overflow-hidden">
           {cardDescription && (
             <div className="p-4 sm:p-6">
               <h3 className="text-xl sm:text-2xl font-bold tracking-tight mb-2 sm:mb-4">

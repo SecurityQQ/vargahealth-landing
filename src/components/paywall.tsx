@@ -208,7 +208,7 @@ export function EnhancedCompanies() {
     <div className="w-full bg-muted py-8 px-6 shadow-lg rounded-t-3xl">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col items-center justify-center space-y-6">
-          <h3 className="text-lg font-semibold text-primary">
+          <h3 className="text-2xl px-2 md:px-0 font-semibold text-primary">
             Brogevity.com members also are at
           </h3>
           <div className="flex flex-wrap items-center justify-center gap-8">

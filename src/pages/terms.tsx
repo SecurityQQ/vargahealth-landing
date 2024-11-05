@@ -31,6 +31,9 @@ const TermsOfUsePage: React.FC = () => {
         {"Payments for the Service are processed through Stripe, and Brogevity does not store any bank information. By making a payment, you agree to pay the fees indicated for the selected subscription plan. The payment grants you access for the duration specified in your subscription plan."}
       </p>
       <p>
+        {"If you are a premium member, and you want to unsubscribe, please use this"} <Link href='https://billing.stripe.com/p/login/7sI03t3cxcuAdKU7ss'>link</Link>
+      </p>
+      <p>
         {"Refunds are available within the first 30 days of purchase and are prorated based on the number of days the Service was used. Refunds will be processed back to the original payment method used at the time of purchase. Please allow up to 7-10 business days for the refund to reflect in your account. After the initial 30-day period, purchases are non-refundable."}
       </p>
       <p>

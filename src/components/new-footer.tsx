@@ -44,19 +44,20 @@ export default function Component() {
           <div className="flex items-center space-x-4 text-sm text-muted-foreground">
             <Link
               href="/privacy"
-              className="hover:text-primary transition-colors flex items-center space-x-1"
+              className="hover:text-primary transition-colors flex items-center space-x-1 no-underline"
             >
               <FileText className="h-4 w-4" />
               <span>Privacy Policy</span>
             </Link>
             <Link
               href="/terms"
-              className="hover:text-primary transition-colors flex items-center space-x-1"
+              className="hover:text-primary transition-colors flex items-center space-x-1 no-underline"
             >
               <FileText className="h-4 w-4" />
               <span>Terms of Service</span>
             </Link>
           </div>
+          <Link href='https://billing.stripe.com/p/login/7sI03t3cxcuAdKU7ss' className='no-underline'>Unsubscribe (For Premium Members)</Link>
           <div className="text-xs text-muted-foreground">
             {new Date().getFullYear()} Longevity Essentials Newsletter | Brogevity AI
           </div>

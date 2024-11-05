@@ -6,7 +6,7 @@ const PrivacyPolicyPage: React.FC = () => {
   return (
     <div className="flex flex-col p-4 md:p-8 prose" style={{ maxWidth: '100%' }}>
       <h1>{"Privacy Policy"}</h1>
-      <p><em>{"Last updated: October 15, 2024"}</em></p>
+      <p><em>{"Last updated: November 5, 2024"}</em></p>
 
       <h2>{"Introduction"}</h2>
       <p>

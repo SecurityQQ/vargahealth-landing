@@ -136,7 +136,7 @@ export default function Component() {
 
 function SignInButton({ email, setEmail, onSubscribeClick }: { email: string; setEmail: (email: string) => void; onSubscribeClick: () => void }) {
   return (
-    <div className="w-full max-w-md p-4 md:p-8 rounded-3xl bg-card/80 backdrop-blur-sm shadow-xl relative border border-accent/20">
+    <div className="w-full max-w-md p-2 md:p-8 rounded-3xl bg-card/80 backdrop-blur-sm shadow-xl relative border border-accent/20">
       <div className="absolute -top-4 -right-4 bg-accent text-accent-foreground px-4 py-1 rounded-full text-sm font-medium transform rotate-12 shadow-lg">
         Newsletter is Free
       </div>
@@ -151,13 +151,13 @@ function SignInButton({ email, setEmail, onSubscribeClick }: { email: string; se
         />
       </div>
 
-      <Button className="w-full px-6 py-6 mb-4 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1" onClick={onSubscribeClick}>
+      <Button className="w-full p-6 mb-4 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1" onClick={onSubscribeClick}>
         Subscribe
       </Button>
       
-      <p className="text-muted-foreground text-sm text-center mt-4">
+      {/*<p className="text-muted-foreground text-sm text-center mt-4">
         {"If you already have an account, we'll log you in"}
-      </p>
+      </p>*/}
     </div>
   )
 }

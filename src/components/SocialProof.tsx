@@ -24,15 +24,16 @@ export default function SocialProof() {
           </div>
           
       </div>
-        <div className="flex items-center pt-2">
-                <div className="flex items-center space-x-1">
-          {[...Array(5)].map((_, i) => (
-            <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />
-          ))}
+        <div className="flex flex-col lg:flex-row items-center pt-2 gap-1">
+          <div className="flex items-center space-x-1">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />
+            ))}
+          </div>
           <p className="text-sm text-muted-foreground pl-2">
              We help 1000+ people{' '} <span className="font-semibold">stay up-to-date with trends, get actionable plans, and save a lot of time</span>
           </p>
-        </div>
+
         
           
       </div>
@@ -42,7 +43,7 @@ export default function SocialProof() {
   );
 }
 
-const influencers = ['Peter Attia', 'Rhonda Patrick', 'Andrew Huberman', 'Bryan Johnson'];
+// const influencers = ['Peter Attia', 'Rhonda Patrick', 'Andrew Huberman', 'Bryan Johnson'];
 
 
 {/*      <p className="text-sm text-muted-foreground pt-2">

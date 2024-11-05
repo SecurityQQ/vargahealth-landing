@@ -10,7 +10,7 @@ const PrivacyPolicyPage: React.FC = () => {
 
       <h2>{"Introduction"}</h2>
       <p>
-        {"IE Aleksandr Malyshev (\"Brogevity,\" \"we,\" \"us,\" or \"our\") values the privacy of our users (\"user\" or \"you\"). This Privacy Policy outlines how we collect, use, and safeguard your information when you use our website "}
+        {"VP Solutions Inc. (\"Brogevity,\" \"we,\" \"us,\" or \"our\") values the privacy of our users (\"user\" or \"you\"). This Privacy Policy outlines how we collect, use, and safeguard your information when you use our website "}
         <Link href="https://brogevity.com">{"https://brogevity.com"}</Link>
         {" (the \"Site\") and our services. By using the Site, you consent to the data practices described in this policy."}
       </p>
@@ -76,8 +76,8 @@ const PrivacyPolicyPage: React.FC = () => {
         {"If you have any questions or comments about this Privacy Policy, please contact us at:"}
       </p>
       <p>
-        {"IE Aleksandr Malyshev"}<br />
-        {"Address: Georgia, Tbilisi, Krtsanisi district, Fonichala settlement 3, building 5, auxiliary storage hall 2, floor 4"}<br />
+        {"VP Solutions Inc."}<br />
+        {"Address: 300 Delaware Ave Ste 210 #700 Wilmington, DE 19801"}<br />
         {"Email: hello@brogevity.com"}
       </p>
     </div>

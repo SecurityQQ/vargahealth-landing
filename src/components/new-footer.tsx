@@ -32,13 +32,13 @@ export default function Component() {
             >
               <span className="sr-only">X (formerly Twitter)</span>
               <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 512 512"
-                      width="24"
-                      height="24"
-                    >
-                  <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
-                </svg>
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                width="24"
+                height="24"
+              >
+                <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
+              </svg>
             </a>
           </div>
           <div className="flex items-center space-x-4 text-sm text-muted-foreground">
@@ -61,9 +61,20 @@ export default function Component() {
           <div className="text-xs text-muted-foreground">
             {new Date().getFullYear()} Longevity Essentials Newsletter | Brogevity AI
           </div>
+          <p style={{ fontSize: "14px", color: "#7f8ba3", margin: "20px 0 10px" }}>
+            <a
+              href="https://pelo.live?utm_source=brogevity_land"
+              style={{ color: "#4c6ef5", textDecoration: "none" }}
+            >
+              <img
+                src="https://res.cloudinary.com/dvxhjc6ji/image/upload/v1731935943/ktkkvmr6hjal5zkqpb3g.png"
+                alt="Pelo AI"
+                style={{ verticalAlign: "middle", height: "40px", marginLeft: "4px" }}
+              />
+            </a>
+          </p>
         </div>
       </div>
     </footer>
   )
 }
-            

@@ -1,9 +1,12 @@
 'use client'
 
+
+import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Award, Brain, Users } from "lucide-react"
 import Link from 'next/link'
 import SocialProof from "./SocialProof"
@@ -134,6 +137,8 @@ export default function Component() {
   )
 }
 
+
+
 function SignInButton({ email, setEmail, onSubscribeClick }: { email: string; setEmail: (email: string) => void; onSubscribeClick: () => void }) {
   return (
     <div className="w-full max-w-md p-2 md:p-8 rounded-3xl bg-card/80 backdrop-blur-sm shadow-xl relative border border-accent/20">
@@ -141,6 +146,7 @@ function SignInButton({ email, setEmail, onSubscribeClick }: { email: string; se
         Newsletter is Free
       </div>
 
+      
       <div className="mb-4">
         <Input
           type="email"
@@ -151,13 +157,38 @@ function SignInButton({ email, setEmail, onSubscribeClick }: { email: string; se
         />
       </div>
 
-      <Button className="w-full p-6 mb-4 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1" onClick={onSubscribeClick}>
+      <Button 
+        className="w-full p-6 mb-4 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1" 
+        onClick={onSubscribeClick}
+      >
         Subscribe
       </Button>
-      
-      {/*<p className="text-muted-foreground text-sm text-center mt-4">
-        {"If you already have an account, we'll log you in"}
-      </p>*/}
+      <div className="text-center">
+        <div className="flex items-center justify-center space-x-2">
+          <p className="text-sm text-muted-foreground">Brogevity.com featured in</p>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <div className="bg-white p-4 h-12 rounded-lg flex items-center justify-center transition-all duration-300 ease-in-out transform hover:scale-110 hover:shadow-lg">
+                <Link href='https://sfstandard.com/2024/11/04/new-tech-flex-longevity-concierge/'>
+                  <Image
+                    src="/sf-standard.png"
+                    alt="San Francisco Standard Logo"
+                    width={90}
+                    height={90}
+                    className="filter grayscale opacity-75 hover:filter-none hover:opacity-100 transition-all duration-300"
+                  />
+                  </Link>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>San Francisco Standard</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+      </div>
+
     </div>
   )
 }

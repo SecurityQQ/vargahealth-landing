@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const response = (await resend.contacts.create({
           email,
           firstName: name,
-          unsubscribed: true,
+          unsubscribed: false,
           audienceId: '986f795d-7f9a-4f6c-8851-b8cac79d258c',
       })) as unknown as ContactResponse;
 

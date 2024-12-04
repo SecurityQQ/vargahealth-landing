@@ -70,7 +70,7 @@ export default function Component() {
         ))}
       </div>
       
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center gap-8 px-4 py-12 md:flex-row md:gap-12 lg:px-8">
+      <div className="relative md:-mt-10 z-10 mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center gap-8 px-4 py-12 md:flex-row md:gap-12 lg:px-8">
         <div className="flex-1 space-y-2 md:space-y-8">
           <div className="inline-flex items-center gap-2 rounded-full bg-accent/20 px-4 py-1 text-sm backdrop-blur-sm mx-auto border border-accent/30">
             <Award className="h-4 w-4 text-accent" />

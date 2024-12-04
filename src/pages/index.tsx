@@ -14,12 +14,35 @@ import Footer from "@/components/new-footer"
 import StickyEmailCollection from '@/components/sticky-email-collection'
 import DataBaseAcceess from "@/components/database-access-section"
 import { EnhancedCompanies } from '@/components/paywall'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 // Ensure to import any global styles if required
 // import '../styles/globals.css'; (Adjust the path as necessary)
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen">
+      <header className="container mx-auto px-4 py-6 flex justify-between items-center">
+
+        <div className="text-2xl font-bold text-primary">Brogevity.com</div>
+        <nav>
+           <Button variant="ghost" asChild>
+          <Link className="no-underline relative flex items-center" href="/getapi">
+            API
+            <span className="ml-2 bg-primary text-white text-xs font-semibold px-2 py-1 rounded-full">
+              New
+            </span>
+          </Link>
+          </Button>
+          <Button variant="ghost" asChild>
+            <Link className='no-underline' href="https://alpha.brogevity.com">Database</Link>
+          </Button>
+          {/*<Button variant="ghost" asChild>
+            <Link  className='no-underline' href="#get-started">Get Started</Link>
+          </Button>*/}
+
+        </nav>
+      </header>
       {/* Hero Section */}
       <Hero />
 

@@ -6,6 +6,7 @@ import React from 'react'
 // Import custom components
 import Hero from '@/components/Hero'
 import Testimonials from '@/components/testimonials'
+
 import MembershipBenefitsSection from '@/components/membership-benefits-section'
 import ContentSection from '@/components/content-section'
 import FAQ from "@/components/faq"

@@ -18,10 +18,23 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-accent/10">
       <Head>
-        <title>Brogevity API - Unlock the Future of Health and Wellness</title>
-        <meta name="description" content="Access comprehensive longevity data, research, and wellness content through Brogevity's powerful API." />
+        <title>Brogevity API - Your Gateway to Evidence-Based Longevity Insights</title>
+        <meta name="description" content="Unlock access to 5,000+ evidence-based longevity claims, peer-reviewed research, and real-time updates. Seamlessly integrate with our GPT-compatible API for instant results." />
+        <meta name="keywords" content="longevity API, health API, wellness data, evidence-based claims, peer-reviewed research, real-time updates, GPT integration, biohacking tools, personalized health insights" />
+        <meta name="author" content="Brogevity" />
+        <meta property="og:title" content="Brogevity API - Your Gateway to Evidence-Based Longevity Insights" />
+        <meta property="og:description" content="Access comprehensive longevity data and real-time updates. Start integrating with our GPT-compatible API today." />
+        {/*<meta property="og:image" content="/og-image.jpg" />*/}
+        <meta property="og:url" content="https://brogevity.com/getapi" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Brogevity API - Your Gateway to Evidence-Based Longevity Insights" />
+        <meta name="twitter:description" content="Access longevity insights, peer-reviewed research, and real-time updates with Brogevity's powerful API." />
+        {/*<meta name="twitter:image" content="/twitter-og-image.jpg" />*/}
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href="https://brogevity.com/getapi" />
       </Head>
+
 
       <header className="container mx-auto px-4 py-6 flex justify-between items-center">
         <div className="text-2xl font-bold text-primary">Brogevity API</div>

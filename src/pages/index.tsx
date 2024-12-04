@@ -27,7 +27,7 @@ export default function LandingPage() {
         <div className="text-2xl font-bold text-primary">Brogevity.com</div>
         <nav>
            <Button variant="ghost" asChild>
-          <Link className="no-underline relative flex items-center" href="/getapi">
+          <Link className="text-xs md:text-md no-underline relative flex items-center" href="/getapi">
             API
             <span className="ml-2 bg-primary text-white text-xs font-semibold px-2 py-1 rounded-full">
               New
@@ -35,7 +35,7 @@ export default function LandingPage() {
           </Link>
           </Button>
           <Button variant="ghost" asChild>
-            <Link className='no-underline' href="https://alpha.brogevity.com">Database</Link>
+            <Link className='text-xs md:text-md no-underline' href="https://alpha.brogevity.com">Database</Link>
           </Button>
           {/*<Button variant="ghost" asChild>
             <Link  className='no-underline' href="#get-started">Get Started</Link>

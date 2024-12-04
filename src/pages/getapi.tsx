@@ -40,10 +40,10 @@ export default function Home() {
         <div className="text-2xl font-bold text-primary">Brogevity API</div>
         <nav>
           <Button variant="ghost" asChild>
-            <Link className='no-underline' href="#API">API Examples</Link>
+            <Link className='text-xs md:text-md no-underline' href="#API">API Examples</Link>
           </Button>
           <Button variant="ghost" asChild>
-            <Link  className='no-underline' href="#get-started">Get Started</Link>
+            <Link  className='text-xs md:text-md no-underline' href="#get-started">Get Started</Link>
           </Button>
 
         </nav>
@@ -157,7 +157,7 @@ function HeroSection() {
 
             <div className="block md:hidden w-full max-w-md pt-3">
               <div className='bg-background rounded-lg shadow-lg'>
-            <div className='pt-6 px-6'>
+            <div className='pt-6 px-6 mx-auto'>
               <ApiExampleView />
             </div>
             <div className='w-full bg-background rounded-lg py-2'>

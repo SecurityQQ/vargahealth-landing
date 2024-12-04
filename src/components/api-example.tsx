@@ -66,7 +66,7 @@ const codeExamples = {
 
 function ApiExampleView() {
   return (
-    <Card className="border-primary bg-background shadow-md">
+    <Card className="border-primary bg-background shadow-md max-w-[85vw]">
       <CardHeader>
         <CardTitle className="flex items-center text-primary">
           <Folder className="mr-2 text-secondary" />

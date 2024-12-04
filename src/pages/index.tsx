@@ -35,12 +35,8 @@ export default function LandingPage() {
           </Link>
           </Button>
           <Button variant="ghost" asChild>
-            <Link className='text-xs md:text-md no-underline' href="https://alpha.brogevity.com">Database</Link>
+            <Link className='text-xs md:text-md no-underline' href="https://alpha.brogevity.com">Alpha</Link>
           </Button>
-          {/*<Button variant="ghost" asChild>
-            <Link  className='no-underline' href="#get-started">Get Started</Link>
-          </Button>*/}
-
         </nav>
       </header>
       {/* Hero Section */}

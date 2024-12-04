@@ -40,10 +40,10 @@ export default function Home() {
         <div className="text-2xl font-bold text-primary">Brogevity API</div>
         <nav>
           <Button variant="ghost" asChild>
-            <Link className='text-xs md:text-md no-underline' href="#API">API Examples</Link>
+            <Link className='text-xs md:text-md no-underline' href="#API">Examples</Link>
           </Button>
           <Button variant="ghost" asChild>
-            <Link  className='text-xs md:text-md no-underline' href="#get-started">Get Started</Link>
+            <Link  className='text-xs md:text-md no-underline' href="#get-started">Demo</Link>
           </Button>
 
         </nav>
